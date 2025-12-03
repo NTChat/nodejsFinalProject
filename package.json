@@ -36,6 +36,7 @@
         "combined-stream": "^1.0.8",
         "concat-map": "^0.0.2",
         "cookie-parser": "^1.4.7",
+        "cors": "^2.8.5",
         "cross-spawn": "^7.0.6",
         "css.escape": "^1.5.1",
         "cssesc": "^3.0.0",
