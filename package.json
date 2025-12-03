@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "cd backend && node server.js"
+  },
+  "dependencies": {
+  "dotenv": "^17.2.3"
   }
 }
