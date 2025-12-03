@@ -1,0 +1,44 @@
+/my-app
+├── /backend     # Thư mục cho ứng dụng backend (Node.js + Express)
+|   ├── /config         # Cấu hình chung
+|    |    ├── dbConnection.js  # Kết nối cơ sở dữ liệu
+│   ├── /controllers    # Các controller cho các route
+│   │   ├── authController.js  # Controller cho xác thực
+|   |   ├── cartController.js  # Controller cho giỏ hàng
+│   │   ├── dashboardController.js  # Controller cho dashboard admin
+│   │   ├── discountController.js  # Controller cho mã giảm giá
+│   │   ├── orderController.js  # Controller cho đơn hàng
+│   │   ├── productController.js  # Controller cho sản phẩm
+│   │   ├── userController.js  # Controller cho người dùng
+│   ├── /models         # Các mô hình dữ liệu (MongoDB, Sequelize, ...)
+│   ├── /routes         # Các file định nghĩa route
+│   ├── /middlewares     # Các middleware
+│   │   ├── auth.js    # Middleware xác thực
+
+│   ├── /config         # Cấu hình (database, environment variables)
+│   ├── /utils          # Các hàm tiện ích cho backend
+│   └── server.js       # Entry point cho ứng dụng backend
+│
+├── /frontend          # Thư mục cho ứng dụng React
+│   ├── /public        # Thư mục công khai (index.html, favicon, ...)
+│   ├── /src           # Thư mục nguồn cho ứng dụng
+│   │   ├── /components # Các component React
+│   │   ├── /pages      # Các trang của ứng dụng
+│   |   ├── /controllers    # Các controller cho các route
+│   │   ├── /context    # Context API
+│   │   ├── /styles     # CSS hoặc Styled Components
+│   │   ├── /utils      # Các hàm tiện ích
+│   │   ├── /routes      # Route 
+│   │   |   ├── AppRoutes.jsx      #Route app chinh
+│   |   |   └── DashboardRoutes.jsx #Route dashboard admin
+│   │   └── index.js    # Entry point của ứng dụng
+│   │
+│   └── package.json    # Thông tin dự án frontend
+│
+
+
+lỗi phát sinh  xử lý sau:
+- Lỗi không đăng nhập bằng FB(Phát hiện sau khi cập nhật Login),
+Đối chiếu git
+- Code Khôi phục mật khẩu
+

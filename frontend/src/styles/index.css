@@ -1,0 +1,508 @@
+/* frontend/src/styles/index.css */
+
+/* === SỬA LỖI 1: THÊM 3 DÒNG NÀY VÀO ĐẦU FILE === */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* =========================================== */
+
+
+/* 1. ĐỊNH NGHĨA BẢNG MÀU MỚI (Xanh đen, Xám, Teal, Be ngả trắng) */
+@layer base {
+  :root {
+    /* Bảng màu chính từ ảnh */
+    --color-primary: #222831;
+    --color-accent: #31363F;
+    --color-accent-hover: #76ABAE;
+    --color-background: #FAF6F0;
+    --color-surface: #FFFFFF;
+
+    /* Màu text */
+    --text-primary: #222831;
+    --text-secondary: #31363F;
+    --text-on-dark: #FAF6F0;
+    --text-accent: #76ABAE;
+  }
+
+  /* 2. ÁP DỤNG MÀU NỀN VÀ MÀU CHỮ MẶC ĐỊNH CHO WEB */
+  body {
+    @apply bg-background text-text-primary;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* 3. Giới hạn max-width cho container trên màn hình lớn */
+  .container {
+    max-width: 1400px !important;
+  }
+}
+
+/* 4. TAILWIND @apply CHO CÁC LỚP TIỆN ÍCH */
+@layer components {
+
+  /* ---- Input Fields (Đã sửa lỗi focus ring) ---- */
+  .input-field {
+    @apply w-full px-4 py-2.5 rounded-lg border border-gray-300 bg-white;
+    @apply text-text-primary placeholder-gray-400;
+    @apply transition-all duration-200 outline-none;
+
+    @apply focus:border-accent;
+
+    &:focus {
+      --tw-ring-color: var(--color-accent-hover);
+      box-shadow: 0 0 0 2px var(--tw-ring-color);
+    }
+  }
+
+  .input-field-disabled {
+    @apply w-full px-4 py-2.5 rounded-lg border border-gray-200 bg-gray-50;
+    @apply text-text-secondary cursor-not-allowed;
+  }
+
+  .label-field {
+    @apply block text-sm font-medium text-text-secondary mb-1.5;
+  }
+
+  /* ---- Buttons (Đã sửa lỗi hover và focus) ---- */
+  .btn-accent-profile {
+    @apply flex items-center justify-center px-5 py-2.5 rounded-lg;
+    background-color: var(--color-accent);
+    /* Dùng CSS var */
+    @apply text-white font-medium;
+    @apply shadow-md hover:shadow-lg;
+    @apply transform transition-all duration-200 active:scale-95;
+    @apply focus:outline-none focus:ring-offset-2;
+
+    &:hover {
+      background-color: var(--color-accent-hover);
+    }
+
+    &:focus {
+      --tw-ring-color: var(--color-accent-hover);
+      box-shadow: 0 0 0 2px var(--tw-ring-color);
+    }
+  }
+
+  .btn-secondary-profile {
+    @apply flex items-center justify-center px-5 py-2.5 rounded-lg;
+    @apply bg-gray-100 text-text-secondary font-medium;
+    @apply border border-gray-200;
+    @apply hover:bg-gray-200 hover:text-text-primary;
+    @apply transform transition-all duration-200 active:scale-95;
+  }
+
+  /* ---- Table (Admin) ---- */
+  .th-table {
+    @apply px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider;
+  }
+
+  /* ---- Custom Scrollbar (Đã sửa lỗi bg-accent/30) ---- */
+  .custom-scrollbar {
+    @apply overflow-y-auto;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    @apply w-1.5;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    /* Lỗi cũ: @apply bg-accent/30 rounded-full; */
+    @apply rounded-full;
+    background-color: var(--color-accent);
+    /* Dùng CSS var */
+    opacity: 0.3;
+    /* Thêm opacity 30% */
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    /* Lỗi cũ: @apply bg-accent/50; */
+    background-color: var(--color-accent);
+    /* Dùng CSS var */
+    opacity: 0.5;
+    /* Thêm opacity 50% */
+  }
+
+  /* ---- Header Components ---- */
+  .btn-avatar-header {
+    @apply flex items-center justify-center px-3 py-2 rounded-lg;
+    @apply bg-black/[.20] hover:bg-black/[.30];
+    @apply text-text-on-dark font-medium;
+    @apply transition-all duration-200;
+  }
+
+  .btn-accent-header {
+    @apply flex items-center justify-center px-3 py-2 rounded-lg;
+    background-color: var(--color-accent);
+    @apply text-text-on-dark font-medium;
+    @apply hover:bg-accent-hover transition-all duration-200;
+  }
+
+  .btn-hamburger-header {
+    @apply md:hidden p-2 rounded-lg;
+    @apply text-text-on-dark hover:bg-black/[.20];
+    @apply transition-all duration-200;
+  }
+
+  /* Dropdown menu items */
+  .menu-item {
+    @apply flex items-center px-4 py-3 text-text-primary;
+    @apply transition-colors duration-150;
+    @apply border-b border-gray-200/[.10] last:border-b-0;
+  }
+
+  .menu-item:hover {
+    background-color: rgba(118, 171, 174, 0.1);
+  }
+
+  .menu-item-danger {
+    @apply flex items-center px-4 py-3 text-red-500;
+    @apply transition-colors duration-150;
+    @apply border-b border-gray-200/[.10] w-full text-left;
+  }
+
+  .menu-item-danger:hover {
+    @apply bg-red-50;
+  }
+
+  /* Mobile nav links */
+  .mobile-nav-link {
+    @apply flex items-center px-4 py-3 rounded-lg;
+    @apply text-text-primary transition-colors duration-150;
+  }
+
+  .mobile-nav-link:hover {
+    background-color: rgba(49, 54, 63, 0.1);
+  }
+
+  .nav-link-dark {
+    @apply text-text-on-dark hover:text-accent-hover;
+    @apply transition-colors duration-200;
+  }
+
+  /* ================================================ */
+
+  /* ---- Price Range Slider (Filter) ---- */
+  .range-double {
+    position: relative;
+    height: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .range-double .range-bg {
+    height: 4px;
+    background: #e5e7eb;
+    border-radius: 2px;
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+  }
+
+  .range-double .range-progress {
+    height: 4px;
+    background: #4f46e5;
+    border-radius: 2px;
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .range-double input[type="range"] {
+    position: absolute;
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    pointer-events: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .range-double input[type="range"]::-webkit-slider-runnable-track {
+    background: transparent;
+    height: 4px;
+  }
+
+  .range-double input[type="range"]::-moz-range-track {
+    background: transparent;
+    height: 4px;
+  }
+
+  .range-double input[type="range"]::-ms-track {
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+    height: 4px;
+  }
+
+  .range-double input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    pointer-events: auto;
+    width: 16px;
+    height: 16px;
+    border-radius: 9999px;
+    background: #4f46e5;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .08);
+    cursor: pointer;
+    margin-top: -6px;
+  }
+
+  .range-double input[type="range"]::-moz-range-thumb {
+    pointer-events: auto;
+    width: 16px;
+    height: 16px;
+    border-radius: 9999px;
+    background: #4f46e5;
+    border: 2px solid #fff;
+    cursor: pointer;
+  }
+
+  .range-double input[type="range"]::-ms-thumb {
+    pointer-events: auto;
+    width: 16px;
+    height: 16px;
+    border-radius: 9999px;
+    background: #4f46e5;
+    border: 2px solid #fff;
+    cursor: pointer;
+  }
+}
+
+/* === SỬA LỖI TOASTIFY (Đã có từ trước) === */
+@layer utilities {
+  .Toastify__toast-container {
+    z-index: 9999999 !important;
+  }
+
+  .Toastify__toast-container--top-right {
+    top: 70px !important;
+  }
+
+  /* ================================================ */
+  /* === CALENDAR COMPONENT STYLING (UPGRADED) === */
+  /* ================================================ */
+
+  /* Main calendar container */
+  .flatpickr-calendar {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.06) !important;
+    border-radius: 16px !important;
+    border: none !important;
+    background: linear-gradient(to bottom, #ffffff 0%, #fafbfc 100%) !important;
+    animation: slideDown 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    overflow: hidden !important;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-12px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .flatpickr-calendar.open {
+    z-index: 50 !important;
+  }
+
+  /* Header with weekdays */
+  .flatpickr-weekdays {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+    padding: 16px 8px !important;
+    margin: 0 !important;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .flatpickr-weekday {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 11px !important;
+    padding: 8px 0 !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+  }
+
+  /* Days grid */
+  .flatpickr-days {
+    padding: 12px !important;
+    width: 100% !important;
+  }
+
+  .flatpickr-day {
+    color: #374151 !important;
+    border-radius: 8px !important;
+    margin: 3px !important;
+    padding: 10px 4px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 36px !important;
+  }
+
+  .flatpickr-day:hover {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%) !important;
+    color: #1e40af !important;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25) !important;
+    transform: scale(1.05) !important;
+  }
+
+  /* Selected day */
+  .flatpickr-day.selected {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    transform: scale(1.08) !important;
+  }
+
+  .flatpickr-day.selected:hover {
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.5) !important;
+  }
+
+  /* Today indicator */
+  .flatpickr-day.today {
+    border: 2px solid #2563eb !important;
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%) !important;
+    color: #1e40af !important;
+    font-weight: 700 !important;
+  }
+
+  .flatpickr-day.today.selected {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+  }
+
+  /* Disabled days (other months) */
+  .flatpickr-day.prevMonthDay,
+  .flatpickr-day.nextMonthDay {
+    color: #d1d5db !important;
+    opacity: 0.5 !important;
+  }
+
+  .flatpickr-day.prevMonthDay:hover,
+  .flatpickr-day.nextMonthDay:hover {
+    background: transparent !important;
+    transform: none !important;
+  }
+
+  /* Navigation buttons */
+  .flatpickr-prev-month,
+  .flatpickr-next-month {
+    fill: #ffffff !important;
+    color: #ffffff !important;
+    padding: 8px !important;
+    border-radius: 6px !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .flatpickr-prev-month:hover,
+  .flatpickr-next-month:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    transform: scale(1.1) !important;
+  }
+
+  .flatpickr-prev-month svg,
+  .flatpickr-next-month svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  /* Month/Year header */
+  .flatpickr-current-month {
+    color: #1f2937 !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    padding: 8px 0 !important;
+  }
+
+  .flatpickr-current-month input.cur-year {
+    color: #2563eb !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+  }
+
+  .flatpickr-current-month input.cur-month {
+    color: #1f2937 !important;
+    font-weight: 700 !important;
+  }
+
+  .flatpickr-current-month .numInputWrapper {
+    width: auto !important;
+    min-width: 40px !important;
+  }
+
+  .numInputWrapper span {
+    color: #6b7280 !important;
+    font-weight: 600 !important;
+  }
+
+  .numInputWrapper input {
+    background: transparent !important;
+    border: none !important;
+    color: #2563eb !important;
+    font-weight: 700 !important;
+  }
+
+  /* Time inputs */
+  .flatpickr-time {
+    border-top: 2px solid #f3f4f6 !important;
+    padding: 12px 12px !important;
+    background: #fafbfc !important;
+  }
+
+  .flatpickr-time input {
+    background: #ffffff !important;
+    border: 2px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    color: #1f2937 !important;
+    font-weight: 600 !important;
+    padding: 6px 10px !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .flatpickr-time input:focus {
+    border-color: #2563eb !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1) !important;
+  }
+
+  .flatpickr-time.hasSeconds .flatpickr-time-separator,
+  .flatpickr-time .flatpickr-time-separator {
+    color: #9ca3af !important;
+    font-weight: 600 !important;
+  }
+
+  /* AM/PM button */
+  .flatpickr-am-pm {
+    color: #2563eb !important;
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%) !important;
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+    border: 2px solid #93c5fd !important;
+    padding: 6px 12px !important;
+    transition: all 0.2s ease !important;
+    cursor: pointer !important;
+  }
+
+  .flatpickr-am-pm:hover {
+    background: linear-gradient(135deg, #bfdbfe 0%, #93c5fd 100%) !important;
+    border-color: #2563eb !important;
+    transform: scale(1.05) !important;
+  }
+}
