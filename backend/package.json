@@ -4,8 +4,9 @@
   "description": "backend of project folder",
   "main": "server.js",
   "scripts": {
-    "start": "cd backend && node server.js"
-  },
+  "start": "node server.js",
+  "dev": "nodemon server.js"
+},
   "author": "",
   "license": "ISC",
   "dependencies": {

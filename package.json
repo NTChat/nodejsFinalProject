@@ -2,7 +2,10 @@
     "name": "nodejsFinalProject",
     "version": "1.0.0",
     "scripts": {
-        "start": "cd backend && node server.js"
+        "start-backend": "cd backend && npm run start",
+        "dev-backend": "cd backend && npm run dev",
+        "start-frontend": "cd frontend && npm start",
+        "dev": "concurrently \"npm:dev-backend\" \"npm:start-frontend\""
     },
     "dependencies": {
         "@greatsumini/react-facebook-login": "^3.4.0",
